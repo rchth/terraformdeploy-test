@@ -37,8 +37,8 @@ jobs:
         run: |
           for tfvars_file in *.tfvars; do
             echo "Running terraform plan for $tfvars_file"
-            terraform plan -var-file="$tfvars_file" -input=false -lock=false
+            terraform plan -var-file="$tfvars_file" -input=false 
 
             echo "Running terraform destroy for $tfvars_file"
-            terraform destroy -var-file="$tfvars_file" -auto-approve -input=false -lock=false
+            terraform destroy -var-file="$tfvars_file" -auto-approve -input=false
           done

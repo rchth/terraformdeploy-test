@@ -1,3 +1,3 @@
-  storage_account_name1 = "firstdeploymentfromgithub123"
-  resource_group_name1  = "rg-test-for-tf"
+  storage_account_name = "firstdeploymentfromgithub123"
+  resource_group_name  = "rg-test-for-tf"
   location             = "francecentral"

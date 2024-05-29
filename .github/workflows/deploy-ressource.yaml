@@ -42,4 +42,7 @@ jobs:
       # Apply Terraform changes
       - name: Terraform Apply
         run: terraform apply -var-file="terraform-sto1.tfvars" -auto-approve -input=false 
+      # Apply Terraform changes
+      - name: Terraform Apply Second
+        run: terraform apply -var-file="terraform-sto2.tfvars" -auto-approve -input=false 
               

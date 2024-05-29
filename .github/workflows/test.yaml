@@ -27,6 +27,10 @@ jobs:
           echo "Matrix JSON: $tfvars_files"
           echo "::set-output name=matrix::$tfvars_files"
           
+      - name: Set Matrix
+        id: set-matrix
+        run: echo "::set-output name=matrix::${{ steps.find-tfvars.outputs.matrix }}"      
+
   infradeploy:
     name: 'infradeploy'
     env:

@@ -1,6 +1,6 @@
 module "storage_account" {
   source              = "./modules/storage-account"
-  storage_account_name = "deploymentfromgithub123"
-  resource_group_name  = "rg-test-for-tf"
-  location             = "francecentral"
+  storage_account_name = var.storage_account_name
+  resource_group_name  = var.resource_group_name
+  location             = var.location
 }

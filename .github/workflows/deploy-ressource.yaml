@@ -39,7 +39,13 @@ jobs:
       # Terraform plan
       - name: Terraform Plan
         run: terraform plan -var-file="terraform-sto1.tfvars" -input=false
-      # Apply Terraform changes
-      - name: Terraform Apply
-        run: terraform apply -var-file="terraform-sto1.tfvars" -auto-approve -input=false 
+      - name: Terraform Plan and Apply
+        run: |
+          for tfvars_file in *.tfvars; do
+            echo "Running terraform plan for $tfvars_file"
+            terraform plan -var-file="$tfvars_file" -input=false
+
+            echo "Running terraform apply for $tfvars_file"
+            terraform apply -var-file="$tfvars_file" -auto-approve -input=false
+          done
               

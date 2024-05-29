@@ -12,3 +12,7 @@ variable "location" {
   description = "The Azure region to deploy the resources in."
   type        = string
 }
+variable "public_network_access_enabled" {
+  description = "The network config of the storage account."
+  type        = string
+}

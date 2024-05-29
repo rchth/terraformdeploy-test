@@ -12,21 +12,8 @@ variable "location" {
   description = "The Azure region to deploy the resources in."
   type        = string
 }
-variable "key_vault_name" {
-  description = "The name of the Key Vault."
-  type        = string
-}
 
-variable "key_vault_location" {
-  description = "The Azure region to deploy the Key Vault."
-  type        = string
-}
-
-variable "key_vault_resource_group_name" {
-  description = "The name of the resource group for the Key Vault."
-  type        = string
-}
-variable "tenant_id" {
-  description = "The name of the resource group for the Key Vault."
+variable "public_network_access_enabled" {
+  description = "The network config of the storage account."
   type        = string
 }

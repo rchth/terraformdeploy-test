@@ -55,5 +55,5 @@ jobs:
 
       - name: Terraform Init
         run: |
-        echo "Echo the variable : ${{ matrix.tfvars_file }} "
+          echo "Echo the variable : ${{ matrix.tfvars_file }} "
     

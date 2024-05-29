@@ -26,7 +26,7 @@ jobs:
           tfvars_files="[${tfvars_files%,}]"
           echo "Matrix JSON: $tfvars_files"
           echo "::set-output name=matrix::$tfvars_files"
-          
+
       - name: Set Matrix
         id: set-matrix
         run: echo "::set-output name=matrix::${{ steps.find-tfvars.outputs.matrix }}"      
@@ -54,10 +54,6 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
-        run: terraform init -upgrade -backend-config="access_key=$TF_BACKEND_ACCESS_KEY"
-
-      - name: Terraform Plan
         run: |
-          echo "Running terraform plan for ${{ matrix.tfvars_file }}"
-          terraform plan -var-file="${{ matrix.tfvars_file }}" -input=false
+        echo "Echo the variable : ${{ matrix.tfvars_file }} "
     

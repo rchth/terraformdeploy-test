@@ -40,5 +40,5 @@ jobs:
             terraform plan -var-file="$tfvars_file" -input=false -lock=false
 
             echo "Running terraform destroy for $tfvars_file"
-            terraform destroy -auto-approve -input=false -lock=false
+            terraform destroy -var-file="$tfvars_file" -auto-approve -input=false -lock=false
           done

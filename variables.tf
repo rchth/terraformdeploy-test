@@ -26,3 +26,7 @@ variable "key_vault_resource_group_name" {
   description = "The name of the resource group for the Key Vault."
   type        = string
 }
+variable "tenant_id" {
+  description = "The name of the resource group for the Key Vault."
+  type        = string
+}

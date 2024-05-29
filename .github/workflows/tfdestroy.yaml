@@ -31,7 +31,7 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init -upgrade -backend-config="access_key=$TF_BACKEND_ACCESS_KEY"
-          terraform plan -input=false
+          terraform plan -var-file="terraform-sto1.tfvars" -input=false
       # Generates an execution plan for Terraform
       #TERRAFORM DESTROY RESSOURCES     
       - name: Terraform Destroy

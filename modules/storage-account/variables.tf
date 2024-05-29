@@ -1,9 +1,18 @@
-variable "storage_account_name" {
+variable "storage_account_name1" {
   description = "The name of the storage account."
   type        = string
 }
 
-variable "resource_group_name" {
+variable "resource_group_name1" {
+  description = "The name of the resource group."
+  type        = string
+}
+variable "storage_account_name2" {
+  description = "The name of the storage account."
+  type        = string
+}
+
+variable "resource_group_name2" {
   description = "The name of the resource group."
   type        = string
 }

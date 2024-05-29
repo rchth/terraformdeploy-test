@@ -13,7 +13,7 @@ jobs:
     name: 'Generate Matrix'
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: ${{ steps.find-tfvars.outputs.matrix }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tfvars_file: ${{steps.find-tfvars.outputs.matrix}} # Add more as needed
+        tfvars_file: ${{fromJson(needs.generate-matrix.outputs.matrix)}} # Add more as needed
     defaults:
       run:
         shell: bash

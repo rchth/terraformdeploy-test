@@ -33,5 +33,12 @@ jobs:
           terraform init -upgrade -backend-config="access_key=$TF_BACKEND_ACCESS_KEY"
       # Generates an execution plan for Terraform
       #TERRAFORM DESTROY RESSOURCES     
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve 
+      - name: Terraform Plan and Destroy
+        run: |
+          for tfvars_file in *.tfvars; do
+            echo "Running terraform plan for $tfvars_file"
+            terraform plan -var-file="$tfvars_file" -input=false
+
+            echo "Running terraform apply for $tfvars_file"
+            terraform destroy -var-file="$tfvars_file" -auto-approve -input=false
+          done

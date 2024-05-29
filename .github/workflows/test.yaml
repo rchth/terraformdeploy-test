@@ -26,8 +26,7 @@ jobs:
           tfvars_files="[${tfvars_files%,}]"
           echo "Matrix JSON: $tfvars_files"
           echo "::set-output name=matrix::$tfvars_files"
-
-jobs:
+          
   infradeploy:
     name: 'infradeploy'
     env:

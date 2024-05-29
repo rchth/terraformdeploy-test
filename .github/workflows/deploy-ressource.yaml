@@ -38,8 +38,8 @@ jobs:
         run: terraform init -upgrade -backend-config="access_key=$TF_BACKEND_ACCESS_KEY"
       # Terraform plan
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -var-file="terraform-sto1.tfvars" -input=false
       # Apply Terraform changes
       - name: Terraform Apply
-        run: terraform apply -auto-approve -input=false 
+        run: terraform apply -var-file="terraform-sto1.tfvars" -auto-approve -input=false 
               

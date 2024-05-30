@@ -29,3 +29,10 @@ jobs:
         id : ls-tfvars
         run: |
           echo "Matrix JSON: ${{ steps.find-tfvars.outputs.matrix }}"
+      
+      - ${{ each step in steps.find-tfvars.outputs.matrix }}:
+        id : ls-tfvars
+        run : | 
+          echo "Matrix JSON: ${{ steps.find-tfvars.outputs.matrix }}"
+
+

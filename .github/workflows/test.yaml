@@ -26,6 +26,6 @@ jobs:
           echo "::set-output name=matrix::$tfvars_files"
       
       - name : Double check value of tfvars
-        id : ls tfvars
+        id : ls-tfvars
         run: |
           echo "Matrix JSON: $tfvars_files"

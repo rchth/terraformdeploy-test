@@ -29,9 +29,18 @@ jobs:
         id : ls-tfvars
         run: |
           echo "Matrix JSON: ${{ steps.find-tfvars.outputs.matrix }}"
+  infradeploy:
+    name: 'infradeploy'
+    needs: generate-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tfvars_file: ${{ (needs.generate-matrix.outputs.matrix) }}
+    steps: 
+      - name : Double check value of tfvars
+        id : lstvars
+        run: |
+          echo "Matrix JSON: ${{ matrix.tfvars_file }}"
       
-      - ${{ each step in steps.find-tfvars.outputs.matrix }}:
-        run : | 
-          echo "Matrix JSON: ${{ steps.find-tfvars.outputs.matrix }}"
 
 

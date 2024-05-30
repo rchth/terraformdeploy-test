@@ -23,9 +23,9 @@ jobs:
         run: |
           # Find all .tfvars files and generate JSON for the matrix
           tfvars_files=$(find . -name "*.tfvars" -printf '{"tfvars_file":"%p"},')
-          tfvars_files="[${tfvars_files%,}]"
-          echo "Matrix JSON: $tfvars_files"
-          echo "::set-output name=matrix::$tfvars_files"
+          tfvars_files="[${tfvars_files%,}]" 
+          echo "$tfvars_files" >> file.txt
+          cat file.txt
 
       - name: Set Matrix
         id: set-matrix

@@ -23,11 +23,9 @@ jobs:
         run: |
           # Find all .tfvars files
           tfvars_files=$(find . -name "*.tfvars" | tr '\n' ' ' | sed 's/ *$//')
-          if [ -z "$tfvars_files" ]; then
-            echo "No .tfvars files found"
-            tfvars_files="[]"
-          else
-            tfvars_files=$(echo "$tfvars_files" | jq -R -s -c 'split(" ") | map(select(length > 0))')
-          fi
-          echo "Matrix JSON: $tfvars_files"
           echo "::set-output name=matrix::$tfvars_files"
+      
+      - name : Double check value of tfvars
+        id : ls tfvars
+        run: |
+          echo "Matrix JSON: $tfvars_files"

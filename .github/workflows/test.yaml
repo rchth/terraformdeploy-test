@@ -21,12 +21,16 @@ jobs:
       - name: Find .tfvars files
         id: find-tfvars
         run: |
-          # Find all .tfvars files and generate JSON for the matrix
-          tfvars_files=$(find . -name "*.tfvars")
-          tfvars_files="'$tfvars_files' "
-          echo "$tfvars_files" >> file.txt
-          cat file.txt
-          echo "$tfvars_files[0]" 
+          # Find all .tfvars files
+          tfvars_files=$(find . -name "*.tfvars" -printf '%p ')
+          if [ -z "$tfvars_files" ]; then
+            echo "No .tfvars files found"
+            tfvars_files="[]"
+          else
+            tfvars_files=$(echo "$tfvars_files" | jq -R -s -c 'split(" ") | map(select(length > 0))')
+          fi
+          echo "Matrix JSON: $tfvars_files"
+          echo "::set-output name=matrix::$tfvars_files"
 
       - name: Set Matrix
         id: set-matrix

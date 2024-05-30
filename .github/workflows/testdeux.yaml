@@ -1,0 +1,17 @@
+name: 'LeverageMatrix'
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+jobs:
+  gen-matrix:
+    name: 'Generate Matrix'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        run: |
+          ls 

@@ -22,7 +22,7 @@ jobs:
         id: find-tfvars
         run: |
           # Find all .tfvars files
-          tfvars_files=$(find . -name "*.tfvars" -print0 | xargs -0 echo)
+          tfvars_files=$(find . -name "*.tfvars" | tr '\n' ' ' | sed 's/ *$//')
           if [ -z "$tfvars_files" ]; then
             echo "No .tfvars files found"
             tfvars_files="[]"
@@ -31,7 +31,3 @@ jobs:
           fi
           echo "Matrix JSON: $tfvars_files"
           echo "::set-output name=matrix::$tfvars_files"
-
-      - name: Set Matrix
-        id: set-matrix
-        run: echo "::set-output name=matrix::${{ steps.find-tfvars.outputs.matrix }}"

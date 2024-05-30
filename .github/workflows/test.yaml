@@ -22,7 +22,9 @@ jobs:
         id: find-tfvars
         run: |
           # Find all .tfvars files
-          tfvars_files=$(find . -name "*.tfvars" | tr '\n' ' ' | sed 's/ *$//')
+          # tfvars_files=$(find . -name "*.tfvars" | tr '\n' ' ' | sed 's/ *$//')
+          tfvars_files=$(find . -name "*.tfvars" | jq -R -s -c 'split(" ") | map(select(length > 0))')
+
           echo "::set-output name=matrix::$tfvars_files"
       
       - name : Double check value of tfvars
@@ -35,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tfvars_file: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+        tfvars_file: ${{ (needs.generate-matrix.outputs.matrix) }}
     steps: 
       - name : Double check value of tfvars
         id : lstvars

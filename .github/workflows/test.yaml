@@ -28,4 +28,4 @@ jobs:
       - name : Double check value of tfvars
         id : ls-tfvars
         run: |
-          echo "Matrix JSON: $tfvars_files"
+          echo "Matrix JSON: ${{ steps.find-tfvars.outputs.matrix }}"

@@ -23,38 +23,11 @@ jobs:
         run: |
           # Find all .tfvars files and generate JSON for the matrix
           tfvars_files=$(find . -name "*.tfvars")
-          tfvars_files="[$tfvars_files]"
-          echo "$tfvars_files[0]" 
+          tfvars_files="[$tfvars_files,]"
           echo "$tfvars_files" >> file.txt
           cat file.txt
+          echo "$tfvars_files[0]" 
 
       - name: Set Matrix
         id: set-matrix
-        run: echo "::set-output name=matrix::${{ steps.find-tfvars.outputs.matrix }}"      
-
-  infradeploy:
-    name: 'infradeploy'
-    env:
-      ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
-      TF_BACKEND_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        tfvars_file: ${{fromJson(needs.generate-matrix.outputs.matrix)}} # Add more as needed
-    defaults:
-      run:
-        shell: bash
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-
-      - name: Terraform Init
-        run: |
-          echo "Echo the variable : ${{ matrix.tfvars_file }} "
-    
+        run: echo "::set-output name=matrix::${{ steps.find-tfvars.outputs.matrix }}"

@@ -22,7 +22,7 @@ jobs:
         id: find-tfvars
         run: |
           # Find all .tfvars files and generate JSON for the matrix
-          tfvars_files=$(find . -name "*.tfvars" -printf '{"tfvars_file":"%p"},')
+          tfvars_files=$(find . -name "*.tfvars",')
           tfvars_files="[${tfvars_files%,}]" 
           echo "$tfvars_files" >> file.txt
           cat file.txt

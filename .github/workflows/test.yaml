@@ -31,16 +31,40 @@ jobs:
           echo "Matrix JSON: ${{ steps.find-tfvars.outputs.matrix }}"
   infradeploy:
     name: 'infradeploy'
+    env:
+      ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
+      TF_BACKEND_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}       
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash    
     needs: generate-matrix
     runs-on: ubuntu-latest
     strategy:
       matrix:
         tfvars_file: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
     steps: 
-      - name : Double check value of tfvars
-        id : lstvars
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name : Play with current dir 
+        id: play_dir
         run: |
-          echo "Matrix JSON: ${{ matrix.tfvars_file }}"
+          ls        
+      # Initialize a neww or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        run: terraform init -upgrade -backend-config="access_key=$TF_BACKEND_ACCESS_KEY"
+      - name: Terraform Plan and Apply
+        run: |
+            terraform plan -var-file=${{ matrix.tfvars_file }}" -input=false || true
+            echo "Running terraform apply for $tfvars_file"
+
       
 
 

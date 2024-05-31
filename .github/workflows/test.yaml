@@ -42,7 +42,6 @@ jobs:
       run:
         shell: bash    
     needs: generate-matrix
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         tfvars_file: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}

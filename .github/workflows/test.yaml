@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tfvars_file: ${{ (needs.generate-matrix.outputs.matrix) }}
+        tfvars_file: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
     steps: 
       - name : Double check value of tfvars
         id : lstvars

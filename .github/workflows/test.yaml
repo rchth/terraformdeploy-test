@@ -62,7 +62,7 @@ jobs:
       
       - name: Terraform Plan and Apply
         run: |
-            terraform plan -var-file=${{ matrix.tfvars_file }} -input=false || true
+            terraform plan -backend-config="resource_group_name=rg-test-for-tf" -backend-config="storage_account_name=statestorage" -backend-config="container_name=state" -backend-config="key=terraform.tfstate" -backend-config="access_key=$TF_BACKEND_ACCESS_KEY" -var-file=${{ matrix.tfvars_file }} -input=false || true
             echo "Running terraform apply for $tfvars_file"
 
       

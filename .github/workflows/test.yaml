@@ -58,7 +58,7 @@ jobs:
           ls        
       # Initialize a neww or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        run: terraform init -upgrade -backend-config="resource_group_name=rg-test-for-tf" -backend-config="storage_account_name=statestorage" -backend-config="state"  -backend-config="key=terraform.tfstate" -backend-config="access_key=$TF_BACKEND_ACCESS_KEY"
+        run: terraform init -upgrade -backend-config="resource_group_name=rg-test-for-tf" -backend-config="storage_account_name=statestorage" -backend-config="container_name=state" -backend-config="key=terraform.tfstate" -backend-config="access_key=$TF_BACKEND_ACCESS_KEY"
       
       - name: Terraform Plan and Apply
         run: |

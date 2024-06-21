@@ -61,6 +61,7 @@ jobs:
         run: |
           # Extract the base name of the tfvars file without extension
           state_key=$(basename ${{ matrix.tfvars_file }} .tfvars).tfstate
+          cd ./storage_account_public
           terraform init -upgrade \
             -backend-config="resource_group_name=rg-test-for-tf" \
             -backend-config="storage_account_name=statestorage" \
@@ -70,6 +71,7 @@ jobs:
       
       - name: Terraform Plan and Apply
         run: |
+            cd ./storage_account_public
             terraform plan -var-file=${{ matrix.tfvars_file }} -input=false || true
             terraform apply -var-file=${{ matrix.tfvars_file }} -auto-approve -input=false || true
             echo "Running terraform apply for $tfvars_file"

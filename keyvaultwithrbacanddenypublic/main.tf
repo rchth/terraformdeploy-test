@@ -1,5 +1,5 @@
 module "keyvault" {
-  source = "../modules/acr"
+  source = "../modules/keyvault"
   keyvault_name = var.keyvault_name
   sku  = var.sku
   public_network_access_enabled = var.public_network_access_enabled

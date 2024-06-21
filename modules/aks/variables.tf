@@ -30,3 +30,14 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "azure_admin_group_object_id" {
+  description = "The Object ID of the Azure AD group that will have admin access to the AKS cluster."
+  type        = string
+  default     = ""
+}
+
+variable "authentication_method" {
+  description = "The way to authenticate to Kubernetes cluster"
+  type = string
+}

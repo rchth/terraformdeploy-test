@@ -1,0 +1,6 @@
+  location            = "francecentral"
+  prefix              = "network-aks"
+  dns_prefix          = var.dns_prefix
+  node_count          = 1
+  vm_size             = "Standard_B2s"
+  authentication_method = "EntraID_Azure_RBAC"

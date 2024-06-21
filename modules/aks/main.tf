@@ -31,7 +31,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
     admin_group_object_ids = var.azure_admin_group_object_id
     azure_rbac_enabled = var.isazurerbacenabled
     }    
-  }
 
   identity {
     type = "SystemAssigned"

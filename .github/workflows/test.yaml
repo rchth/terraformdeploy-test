@@ -60,6 +60,7 @@ jobs:
       # Initialize a neww or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
         run: |
+          cd ./storage_account_public
           # Extract the base name of the tfvars file without extension
           state_key=$(basename ${{ matrix.tfvars_file }} .tfvars).tfstate
           terraform init -upgrade \
@@ -71,6 +72,7 @@ jobs:
       
       - name: Terraform Plan and Apply
         run: |
+            cd ./storage_account_public
             terraform plan -var-file=${{ matrix.tfvars_file }} -input=false || true
             terraform apply -var-file=${{ matrix.tfvars_file }} -auto-approve -input=false || true
             echo "Running terraform apply for $tfvars_file"

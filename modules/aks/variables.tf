@@ -1,18 +1,32 @@
-variable "storage_account_name" {
-  description = "The name of the storage account."
-  type        = string
-}
-
-variable "resource_group_name" {
-  description = "The name of the resource group."
-  type        = string
-}
-
 variable "location" {
-  description = "The Azure region to deploy the resources in."
+  description = "The location of the resource group."
   type        = string
 }
-variable "public_network_access_enabled" {
-  description = "The network config of the storage account."
+
+variable "prefix" {
+  description = "Prefix for naming resources."
   type        = string
+}
+
+variable "dns_prefix" {
+  description = "DNS prefix for the AKS cluster."
+  type        = string
+}
+
+variable "node_count" {
+  description = "The number of nodes in the default node pool."
+  type        = number
+  default     = 1
+}
+
+variable "vm_size" {
+  description = "The size of the Virtual Machine."
+  type        = string
+  default     = "Standard_B2s"
+}
+
+variable "tags" {
+  description = "A map of tags to assign to the resources."
+  type        = map(string)
+  default     = {}
 }

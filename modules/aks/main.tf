@@ -25,7 +25,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vnet_subnet_id = azurerm_subnet.aks_subnet.id
   }
   local_account_disabled = var.local_account_disabled
-  role_based_access_control {
+  azure_active_directory_role_based_access_control {
     enabled = var.isrbacenabled
       azure_active_directory {
         managed = true

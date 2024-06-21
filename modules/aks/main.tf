@@ -24,7 +24,15 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size    = var.vm_size
     vnet_subnet_id = azurerm_subnet.aks_subnet.id
   }
-  local_account_disabled = false
+  local_account_disabled = var.local_account_disabled
+  role_based_access_control {
+    enabled = var.isrbacenabled
+      azure_active_directory {
+        managed = true
+        admin_group_object_ids = var.azure_admin_group_object_id
+        azure_rbac_enabled = true
+      }    
+  }
 
   identity {
     type = "SystemAssigned"

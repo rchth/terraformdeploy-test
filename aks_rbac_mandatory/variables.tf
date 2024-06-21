@@ -36,3 +36,12 @@ variable "azure_admin_group_object_id" {
   type        = string
   default     = ""
 }
+
+variable "isrbacenabled" {
+  description = "The Object ID of the Azure AD group that will have admin access to the AKS cluster."
+  type        = bool
+}
+variable "isazurerbacenabled" {
+  description = "The Object ID of the Azure AD group that will have admin access to the AKS cluster."
+  type        = bool
+}

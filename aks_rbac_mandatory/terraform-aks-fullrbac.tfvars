@@ -3,4 +3,6 @@
   dns_prefix          = "testingaks"
   node_count          = 1
   vm_size             = "Standard_B2s"
-  authentication_method = "EntraID_Azure_RBAC"
+  local_account_disabled = true
+  isrbacenabled = true
+  isazurerbacenabled = true

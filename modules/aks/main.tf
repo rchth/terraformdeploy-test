@@ -27,11 +27,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
   local_account_disabled = var.local_account_disabled
   azure_active_directory_role_based_access_control {
     enabled = var.isrbacenabled
-      azure_active_directory {
-        managed = true
-        admin_group_object_ids = var.azure_admin_group_object_id
-        azure_rbac_enabled = var.isazurerbacenabled
-      }    
+    managed = true
+    admin_group_object_ids = var.azure_admin_group_object_id
+    azure_rbac_enabled = var.isazurerbacenabled
+    }    
   }
 
   identity {

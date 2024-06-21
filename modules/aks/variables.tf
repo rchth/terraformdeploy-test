@@ -36,8 +36,3 @@ variable "azure_admin_group_object_id" {
   type        = string
   default     = ""
 }
-
-variable "authentication_method" {
-  description = "The way to authenticate to Kubernetes cluster"
-  type = string
-}

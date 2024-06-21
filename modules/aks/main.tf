@@ -24,40 +24,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size    = var.vm_size
     vnet_subnet_id = azurerm_subnet.aks_subnet.id
   }
-  
-  # Authentication configuration
-  dynamic "role_based_access_control" {
-    for_each = var.authentication_method == "Local" ? [1] : []
-    content {
-      enabled = true
-      azure_active_directory {
-        managed = false
-      }
-    }
-  }
-
-  dynamic "role_based_access_control" {
-    for_each = var.authentication_method == "EntraID_Kubernetes_RBAC" ? [1] : []
-    content {
-      enabled = true
-      azure_active_directory {
-        managed = true
-        admin_group_object_ids = [var.azure_admin_group_object_id]
-      }
-    }
-  }
-
-  dynamic "role_based_access_control" {
-    for_each = var.authentication_method == "EntraID_Azure_RBAC" ? [1] : []
-    content {
-      enabled = true
-      azure_active_directory {
-        managed = true
-        admin_group_object_ids = [var.azure_admin_group_object_id]
-        azure_rbac_enabled = true
-      }
-    }
-  }  
+  local_account_disabled = false
 
   identity {
     type = "SystemAssigned"

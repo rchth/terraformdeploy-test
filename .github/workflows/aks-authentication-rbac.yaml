@@ -1,4 +1,4 @@
-name: 'LeverageMatrix'
+name: 'AksWithAuthentOptions'
 
 on:
   workflow_dispatch:

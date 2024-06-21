@@ -1,6 +1,6 @@
 resource "azurerm_container_registry" "acr" {
     name = var.acr_name
-    resource_group_name = "rg-tf-test"
+    resource_group_name = "rg-test-for-tf"
     location = "francecentral"
     sku = var.sku
     admin_enabled = true 

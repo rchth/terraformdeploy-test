@@ -1,8 +1,8 @@
-resource "azurerm_key_vault" "keyvault" {
-    name = var.keyvault_name
+resource "azurerm_container_registry" "acr" {
+    name = var.acr_name
     resource_group_name = "rg-test-for-tf"
     location = "francecentral"
-    sku_name = var.sku
-    enable_rbac_authorization = var.enable_rbac_authorization
+    sku = var.sku
+    admin_enabled = true 
     public_network_access_enabled = var.public_network_access_enabled
 }

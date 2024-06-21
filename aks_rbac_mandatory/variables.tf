@@ -37,6 +37,11 @@ variable "azure_admin_group_object_id" {
   default     = ""
 }
 
+variable "local_account_disabled" {
+  description = "Enable or disable local authent"
+  type        = bool  
+}
+
 variable "isrbacenabled" {
   description = "The Object ID of the Azure AD group that will have admin access to the AKS cluster."
   type        = bool

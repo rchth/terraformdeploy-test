@@ -1,4 +1,4 @@
-name: 'AksWithAuthentOptions'
+name: 'acrPublicAccess'
 
 on:
   workflow_dispatch:
